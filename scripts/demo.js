@@ -33,7 +33,8 @@ $(function () {
         lookup: countriesArray,
         lookupFilter: function(suggestion, originalQuery, queryLowerCase) {
             var re = new RegExp('\\b' + $.Autocomplete.utils.escapeRegExChars(queryLowerCase), 'gi');
-            return re.test(suggestion.value);
+            //return re.test(suggestion.value);
+            return suggestion.value.toLowerCase().indexOf(queryLowerCase) === 0;  // can support as Chinese、Cyrillic  etc.
         },
         onSelect: function(suggestion) {
             $('#selction-ajax').html('You selected: ' + suggestion.value + ', ' + suggestion.data);
